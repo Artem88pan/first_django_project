@@ -1,9 +1,12 @@
 from django.urls import path
-from .views import about, login, contacts, index_myapp
+from .views import about, login, contacts, index_myapp, cars, drivers
 
 urlpatterns = [
-    path('', index_myapp),
-    path('about/', about),
-    path('login/', login),
-    path('contacts/<int:id>/', contacts ),
+    path('', index_myapp, name='index'),
+    path('about/', about, name='about'),
+    path('login/', login, name='login'),
+    path('contacts/<int:id>/', contacts, name='contacts'),
+    path('cars/', cars, name='cars'),
+    path('drivers/', drivers, name='drivers'),
+
 ]
