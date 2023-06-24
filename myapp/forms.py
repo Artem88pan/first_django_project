@@ -1,5 +1,8 @@
 from django import forms
+from django.forms import ModelForm
+from .models import *
 import datetime
+from project_django.settings import DATE_INPUT_FORMAT
 
 
 def year_choices():
@@ -14,4 +17,12 @@ class CarForm(forms.Form):
     color = forms.CharField(max_length=30, label='цвет', required=False)
     power = forms.IntegerField(label='мощность', required=False, min_value=1, max_value=600)
     year = forms.ChoiceField(label='год производства',choices=year_choices, initial=corrent_year)
+
+class ClientForm(ModelForm):
+    class Meta:
+        model = Client
+        exclude = ['age']
+
+    birthday = forms.DateField(input_formats=DATE_INPUT_FORMAT, label='Дата рождения')
+
 
