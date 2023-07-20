@@ -1,13 +1,11 @@
 {% extends 'myapp/base.html' %}
 
 {% block content %}
-
 <h1>{{title}}</h1>
-Добавить машину:
-<form action="{% url 'myapp:add_car' %}" method="post">
+Добавить водителя:
+<form action="{% url 'myapp:add_drivers' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Добавить</button>
 </form>
 {% endblock %}
-

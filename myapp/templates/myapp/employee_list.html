@@ -1,0 +1,41 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+Сотрудники:
+<table id="employee" border="1">
+    <th>id</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Дата рождения</th>
+    <th>Должность</th>
+    <th>Образование</th>
+{% for emp in employees %}
+         <tr>
+            <td align="center">{{emp.id}}</td>
+            <td align="center">
+                <a href="{% url 'myapp:employee_detail' pk=emp.id %}">{{emp.firstname}}</a>
+            </td>
+            <td align="center">{{emp.lastname}}</td>
+            <td align="center">{{emp.birthday}}</td>
+            <td align="center">{{emp.position}}</td>
+            <td align="center">{{emp.education}}</td>
+         </tr>
+{% endfor %}
+
+</table>
+
+<p><a href="{% url 'myapp:employee_form' %}">Добавить сотрудника</a></p>
+
+{% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; В начало</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+    {% endif %}
+
+        Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Слудующая</a>
+        <a href="?page={{ page_obj.paginator.nun_pages }}">последняя &raquo;</a>
+    {% endif %}
+{% endblock %}
